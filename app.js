@@ -11,19 +11,17 @@ app.get('/', (req, res) => {
     res.send(
         `<h3> Welcome to your fav statistic page </h3> <br>
         <h6> Type ? then either 'mean, mode or median' = 'group of numbers separated by commas to the url </h6>
-        <p> EXAMPLE: http://localhost:5000/mean?nums=1,3,5,7 </p> `
+        <p> EXAMPLE: http://localhost:5000/mean?numbers=1,3,5,7 </p> `
     )
 })
 
 // Route to calculate mean
 app.get("/mean", (req, res) => {
     try {
-        debugger
         const numbers = parseNumbers(req);
         const mean = numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
         res.json({ operation: "mean", value: mean });
     } catch (error) {
-        console.log(req.query)
         res.status(400).json({ error: error.message });
     }
 });
@@ -113,7 +111,7 @@ app.get("/all", (req, res) => {
 });
 
 
-/** general error handler */
+// general error handler 
 
 app.use(function (req, res, next) {
     const err = new ExpressError("Not Found", 404);

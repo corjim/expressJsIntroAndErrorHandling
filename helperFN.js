@@ -3,7 +3,7 @@ function parseNumbers(req) {
     const { numbers } = req.query;
 
     if (!numbers) {
-        throw new ExpressError('You must provide a "number query in the parameter.', 400)
+        throw new ExpressError('You must provide a number query in the parameter.', 400)
     }
     const numArray = numbers.split(",").map((num) => {
         const parsed = parseFloat(num);
@@ -15,3 +15,6 @@ function parseNumbers(req) {
 
     return numArray;
 }
+
+
+module.exports = parseNumbers;
